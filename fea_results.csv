@@ -1,0 +1,4 @@
+Case,Loading,Max tip deflection (mm),Max bending stress (MPa),Yield factor of safety,Max root moment (N mm)
+A — 100 N downward tip load,A — 100 N downward tip load,7.9365,166.6667,1.5000,30000.0000
+B — 200 N downward tip load,B — 200 N downward tip load,15.8730,333.3333,0.7500,60000.0000
+C — 100 N/m downward UDL,C — 100 N/m downward UDL,0.8929,25.0000,10.0000,4500.0000
