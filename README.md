@@ -1,39 +1,25 @@
-# Task 2 — Structural Simulation (FEA)
+# Task 2 — CATIA V5 Structural Simulation (FEA)
 
-A cantilever beam study comparing tip-force and distributed-load cases. This repository contains a written report, calculated result data, reproducible beam-FE source, a CATIA V5 geometry macro, and figures.
+**Primary submission:** native CATIA V5 R21 Generative Structural Analysis of a 300 × 30 × 6 mm cantilever beam. Open the editable CATPart, solved CATAnalysis, scalar exports, plots, screenshots and report in [CATIA_V5_Native](CATIA_V5_Native/README.md).
 
-![FEA result overview](final_fea_image.svg)
+## Solver results
 
-## Results at a glance
+| Load | Peak von Mises stress | Peak displacement | Estimated FoS* |
+|---:|---:|---:|---:|
+| 100 N | 83.41 MPa | 48.10 mm | 3.00 |
+| 200 N | 166.82 MPa | 96.19 mm | 1.50 |
 
-| Load case | Peak tip deflection | Maximum bending stress | Factor of safety* |
-|---|---:|---:|---:|
-| 100 N downward tip force | 7.9365 mm | 166.67 MPa | 1.50 |
-| 200 N downward tip force | 15.8730 mm | 333.33 MPa | 0.75 |
-| 100 N/m downward distributed load | 0.8929 mm | 25.00 MPa | 10.00 |
+The end face at z = 0 mm is clamped. Each load is uniform pressure across the 300 × 30 mm top face. Both static solves completed in CATIA GSA. *FoS uses an assumed 250 MPa yield strength; confirm the steel grade.
 
-\*FoS is based on an assumed 250 MPa yield strength.
+## Review note
+
+The exported displacement is much larger than a simple beam check predicts (about 3.13 mm at 100 N and 6.25 mm at 200 N). The detailed report flags this discrepancy. Review the displacement result, support, load and units in CATIA before calling the component design-validated.
 
 ## Open the submission
 
-- [Structural simulation report](structural_fea_report.html)
-- [Result data (CSV)](fea_results.csv)
-- [Complete submission package (ZIP)](task2_structural_fea_submission.zip)
+- [Detailed CATIA solver report](CATIA_V5_Native/structural_fea_report.html)
+- [CATIA beam part](CATIA_V5_Native/task2_catia_solved.CATPart)
+- [CATIA GSA analysis document](CATIA_V5_Native/task2_catia_solved.CATAnalysis)
+- [Combined native nodal results](CATIA_V5_Native/catia_native_nodal_results.csv)
 
-## Model and method
-
-The study uses a 300 × 30 × 6 mm rectangular cantilever beam, with steel properties of E = 210 GPa and assumed yield strength = 250 MPa. The calculated results come from an independent, linear Euler–Bernoulli beam finite-element model with 20 elements. The reported stress is nominal bending stress.
-
-The solver is a simplified beam model. It does not include shear deformation, stress concentrations, fatigue, buckling, or self-weight. The numeric results are not presented as output from the CATIA Generative Structural Analysis solver.
-
-## Files
-
-- `fea_beam.js` — Node.js beam finite-element calculation and result generator.
-- `fea_results.csv` — result values for each load case.
-- `cantilever_beam.CATScript` — CATIA V5 macro to create and save the beam solid.
-- `beam_geometry_loads.svg`, `deflection_chart.svg`, `stress_chart.svg` — report figures.
-- `structural_fea_report.html` — detailed report with model definition, load cases, results, observations, and figures.
-
-## CATIA V5 geometry
-
-Run `cantilever_beam.CATScript` in CATIA V5 through **Tools → Macro → Macros** to create the editable beam geometry. For a native CATIA structural simulation, use Generative Structural Analysis if it is licensed, apply the boundary conditions and separate loads, mesh and solve, then capture the CATIA result screenshots. The report distinguishes the independent beam-FE calculations from CATIA solver results.
+Earlier analytical files remain in the repository for reference; the CATIA-native folder is the primary submission.
